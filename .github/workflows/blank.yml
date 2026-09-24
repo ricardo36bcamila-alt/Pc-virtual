@@ -56,8 +56,8 @@ jobs:
         Remove-Item $installerPath -Force
         Write-Host "Tailscale installed successfully!" -ForegroundColor Green
         
-        - name: Start Tailscale
-        run: |
+    - name: Start Tailscale
+      run: |
         Write-Host "Starting Tailscale..." -ForegroundColor Green
         & "C:\Program Files\Tailscale\tailscale.exe" up --authkey ${{ secrets.TAILSCALE_AUTH_KEY }} --hostname "enigmano-rdp"
         Start-Sleep -Seconds 15
@@ -115,8 +115,7 @@ jobs:
         Write-Host "Do not close this window to maintain the connection." -ForegroundColor Red
         
         $counter = 0
-        while ($true) {
-          $counter++
+        while ($true) {$counter++
           Write-Host "Session active - Heartbeat #$counter ($(Get-Date))" -ForegroundColor Green
           
           $tsStatus = & "C:\Program Files\Tailscale\tailscale.exe" status
@@ -124,8 +123,9 @@ jobs:
             Write-Host "Tailscale status: ACTIVE" -ForegroundColor Green
           } else {
             Write-Host "Tailscale status: ERROR - Restarting..." -ForegroundColor Red
-            & "C:\Program Files\Tailscale\tailscale.exe" up --authkey ${{ secrets.TAILSCALE_AUTH_KEY }} --hostname "enigmano-${{ github.run_id }}"
+            & "C:\Program Files\Tailscale\tailscale.exe" up --authkey ${{ secrets.TAILSCALE_AUTH_KEY }} --hostname "enigmano-rdp"
           }
           
           Start-Sleep -Seconds 60
+        }
         
