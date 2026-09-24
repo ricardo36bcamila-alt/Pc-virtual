@@ -1,4 +1,4 @@
-name: PC criado pelo alves7.pcm
+name: PC criado pelo @alves7.pcm
 
 on:
   workflow_dispatch:
@@ -61,7 +61,7 @@ jobs:
         Write-Host "Starting Tailscale..." -ForegroundColor Green
         & "C:\Program Files\Tailscale\tailscale.exe" up --authkey ${{ secrets.TAILSCALE_AUTH_KEY }} --hostname "enigmano-rdp"
         Start-Sleep -Seconds 15
-         
+        
     - name: Get Tailscale IP
       run: |
         $tsIP = & "C:\Program Files\Tailscale\tailscale.exe" ip -4
@@ -128,3 +128,4 @@ jobs:
           
           Start-Sleep -Seconds 60
         }
+        
