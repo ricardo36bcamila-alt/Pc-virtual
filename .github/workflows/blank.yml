@@ -1,4 +1,4 @@
-name: PC criado pelo @alves7.pcm
+name: PC criado pelo alves7.pcm
 
 on:
   workflow_dispatch:
@@ -56,11 +56,12 @@ jobs:
         Remove-Item $installerPath -Force
         Write-Host "Tailscale installed successfully!" -ForegroundColor Green
         
-        - name: Start Tailscale
+            - name: Start Tailscale
       run: |
         Write-Host "Starting Tailscale..." -ForegroundColor Green
         & "C:\Program Files\Tailscale\tailscale.exe" up --authkey ${{ secrets.TAILSCALE_AUTH_KEY }} --hostname "enigmano-rdp"
         Start-Sleep -Seconds 15
+        
         
     - name: Get Tailscale IP
       run: |
